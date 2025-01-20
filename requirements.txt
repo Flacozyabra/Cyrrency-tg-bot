@@ -1,0 +1,10 @@
+certifi==2024.12.14
+charset-normalizer==3.4.1
+environs==14.1.0
+idna==3.10
+marshmallow==3.25.1
+packaging==24.2
+python-dotenv==1.0.1
+PyYAML==6.0.2
+requests==2.32.3
+urllib3==2.3.0

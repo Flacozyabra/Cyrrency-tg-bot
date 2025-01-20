@@ -44,9 +44,9 @@ async def main():
 
         msg = 'Курс $USDT - ' + usdt + ' на ' + '[' + tm + ']'
         send_and_update_message(token=config.tg_bot.token,
-                             chat_id=config.tg_bot.chat_id,
-                             topic_id=config.tg_bot.topic_id,
-                             msg=msg)
+                                chat_id=config.tg_bot.chat_id,
+                                topic_id=config.tg_bot.topic_id,
+                                msg=msg)
         sleep_time = 300
         logger.info(f'Полет нормальный. Спим {300} секунд.')
         sleep(sleep_time)
