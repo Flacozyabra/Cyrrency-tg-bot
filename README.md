@@ -1,8 +1,8 @@
 - Открываешь командную строку (КС) в нужной директории и пишешь git clone https://github.com/Flacozyabra/Cyrrency-tg-bot
 - Если git не установлен, то не сработает, тогда просто копируй репозиторий вручную
 - В КС открываешь папку с ботом и пишешь:
-        venv\Scripts\activate
-        pip install -r requirements.txt
+- venv\Scripts\activate
+- pip install -r requirements.txt
 - создаешь файл .env, в нем прописываешь: 
         токен бота, 
         админские айдишники (минимум два, можно одинаковые. через запятую), 
