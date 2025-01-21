@@ -42,7 +42,7 @@ async def main():
         tm = datetime.now().strftime("%H:%M - %d.%m.%y")
         tm = str(tm)
 
-        msg = 'Курс $USDT - ' + usdt + ' на ' + '[' + tm + ']'
+        msg = 'Курс $USDT - ' + usdt + ' ₽ на ' + '[' + tm + ']'
         send_and_update_message(token=config.tg_bot.token,
                                 chat_id=config.tg_bot.chat_id,
                                 topic_id=config.tg_bot.topic_id,

@@ -6,7 +6,6 @@ import logging
 # создаем экземпляр логгера
 logger = logging.getLogger(__name__)
 
-
 def load_message_data(file_path):
     """Загружает данные сообщения (ID и текст) из файла."""
     if os.path.exists(file_path):
@@ -25,7 +24,17 @@ def send_message(token, chat_id, topic_id, msg):
     payload = {
         "chat_id": chat_id,
         "message_thread_id": topic_id,
-        "text": msg
+        "text": msg,
+        "reply_markup": {
+            "inline_keyboard": [
+                [
+                    {
+                        "text": "💱 СПИСОК ОБМЕННИКОВ",
+                        "url": "https://telegra.ph/Obmen-11-06-2"
+                    }
+                ]
+            ]
+        }
     }
     response = requests.post(send_message_url, json=payload)
     if response.status_code == 200:
@@ -74,6 +83,16 @@ def send_and_update_message(token, chat_id, topic_id, msg, storage_file='message
             "chat_id": chat_id,
             "message_id": message_id,
             "text": msg,
+            "reply_markup": {
+                "inline_keyboard": [
+                    [
+                        {
+                            "text": "💱 СПИСОК ОБМЕННИКОВ",
+                            "url": "https://telegra.ph/Obmen-11-06-2"
+                        }
+                    ]
+                ]
+            }
         }
         response = requests.post(edit_message_url, json=payload)
         if response.status_code == 200:
