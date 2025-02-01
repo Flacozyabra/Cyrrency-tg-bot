@@ -39,17 +39,23 @@ async def main():
 
     while True:
         usdt = get_rates()
-        tm = datetime.now().strftime("%H:%M - %d.%m.%y")
-        tm = str(tm)
 
-        msg = 'Курс $USDT - ' + usdt + ' ₽ на ' + '[' + tm + ']'
-        send_and_update_message(token=config.tg_bot.token,
-                                chat_id=config.tg_bot.chat_id,
-                                topic_id=config.tg_bot.topic_id,
-                                msg=msg)
-        sleep_time = 300
-        logger.info(f'Полет нормальный. Спим {300} секунд.')
-        sleep(sleep_time)
+        if usdt is None:
+            logger.error("Не удалось получить курс")
+
+        else:
+
+            tm = datetime.now().strftime("%H:%M - %d.%m.%y")
+            tm = str(tm)
+
+            msg = 'Курс $USDT - ' + usdt + ' ₽ на ' + '[' + tm + ']'
+            send_and_update_message(token=config.tg_bot.token,
+                                    chat_id=config.tg_bot.chat_id,
+                                    topic_id=config.tg_bot.topic_id,
+                                    msg=msg)
+            sleep_time = 300
+            logger.info(f'Полет нормальный. Спим {300} секунд.')
+            sleep(sleep_time)
 
 
 if __name__ == '__main__':

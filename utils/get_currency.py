@@ -1,21 +1,25 @@
 import requests
 import logging
 
-# создаем экземпляр логгера
 logger = logging.getLogger(__name__)
 
 
 def get_rates():
-
-        # URL для получения информации о курсах
+    """Получает курс USDT к RUB с биржи garantex.org"""
     url = 'https://garantex.org/api/v2/depth?market=usdtrub'
 
-    # Отправляем GET-запрос
-    response = requests.get(url=url)
+    try:
+        response = requests.get(url=url, timeout=300)
+        response.raise_for_status()  # Проверка HTTP-ошибок
 
-    # Проверяем, что запрос успешен
-    if response.status_code == 200:
-        logger.info(f"Курс - {response.json()['asks'][0]['price']}")
-        return response.json()['asks'][0]['price']
-    else:
-        logger.info(f"Ошибка при запросе курса: {response.status_code}")
+        price = response.json().get('asks', [{}])[0].get('price')
+        if price:
+            logger.info(f"Курс - {price}")
+            return price
+        else:
+            logger.warning("Не удалось получить курс: пустой ответ")
+            return None
+
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Ошибка при запросе курса: {e}")
+        return None
